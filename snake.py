@@ -2,6 +2,7 @@ import curses
 import time
 import random
 screen = curses.initscr()
+curses.curs_set(0)
 dims = screen.getmaxyx()
 screen.keypad(1)
 
@@ -53,7 +54,8 @@ def game(): #the function of the game
 
         body[0] = head[:]
         if screen.inch(head[0], head[1]) != ord(' '):
-            if screen.inch(head[1]) == ord('@'):
+            if screen.inch(head[0], head[1]) == ord('@'):
+
                 food = False
                 body.append(body[-1])
             else:
@@ -61,5 +63,22 @@ def game(): #the function of the game
         screen.move(dims[0]-1, dims[1]-1)
         screen.refresh()
         time.sleep(0.1)
+    screen.clear()
+    screen.nodelay(0)
+    '''message1 = "Game Over"
+    message2 = "You have" + str(len(body)-5) + "points"
+    message3 = "press Space to play again"
+    message4 = "Press Enter to quit"
+    screen.addstr(dims[0]/2-1, (dims[1]-len(message1))/2, message1)
+    screen.addstr(dims[0]/2, (dims[1]-len(message2))/2, message2)
+    screen.addstr(dims[0]/2+1, (dims[1]-len(message3))/2, message3)
+    screen.addstr(dims[0]/2+2, (dims[1]-len(message4))/2, message4)
+    screen.refresh()
+    q = 0
+    while q not in [32, 10]:
+        g = screen.getch()
+    if q == 32:
+        game()
+    screen.getch()'''
 game()
 curses.endwin()
