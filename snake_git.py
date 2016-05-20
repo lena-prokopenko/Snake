@@ -76,7 +76,9 @@ def game():
     msg_5 = "If you want to play again, press SPACE."
     msg_6 = "If you want to quit and run away like coward just press Q or ESC."
     win.clear()
+    win.border(0)
     win.nodelay(0)
+    win.addstr(scr_size[0] - 1, scr_size[1] - 1 - len("SNAKE in Phython curses by LENA & MIKI 2016 CODECOOL project"), "SNAKE in Phython curses by LENA & MIKI 2016 CODECOOL project")
     win.addstr(scr_size[0] // 2 - 3, scr_size[1] // 2 - len(msg_1) // 2, msg_1, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
     win.addstr(scr_size[0] // 2 - 2, scr_size[1] // 2 - len(msg_2) // 2, msg_2, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
     if score == 0:
