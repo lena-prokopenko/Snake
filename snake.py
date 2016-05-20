@@ -68,12 +68,29 @@ def game():
             else:
                 game_over = 1
         win.refresh()
-    '''msg_1 = "GAME OVER"
+
+    msg_1 = "GAME OVER"
     msg_2 = "You've made " + str(score) + " points."
     msg_3 = "zero. null. nothing."
     msg_4 = "Loser! "
     msg_5 = "If you want to play again, press SPACE."
-    msg_6 = "If you want to quit and run away like coward press Q or ESC."
-    win.addstr()'''
+    msg_6 = "If you want to quit and run away like coward just press Q or ESC."
+    win.clear()
+    win.nodelay(0)
+    win.addstr(scr_size[0] // 2 - 3, scr_size[1] // 2 - len(msg_1) // 2, msg_1, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    win.addstr(scr_size[0] // 2 - 2, scr_size[1] // 2 - len(msg_2) // 2, msg_2, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    if score == 0:
+        win.addstr(scr_size[0] // 2 - 1, scr_size[1] // 2 - len(msg_3) // 2, msg_3, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    else:
+        win.addstr(scr_size[0] // 2, scr_size[1] // 2 - len(msg_4) // 2, msg_4, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    win.addstr(scr_size[0] // 2 + 1, scr_size[1] // 2 - len(msg_5) // 2, msg_5, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    win.addstr(scr_size[0] // 2 + 2, scr_size[1] // 2 - len(msg_6) // 2, msg_6, curses.A_UNDERLINE | curses.A_BOLD | curses.A_STANDOUT)
+    win.refresh()
+    button = 0
+    while button not in [27, 113, 32]:
+        button = win.getch()
+    if button == 32:
+        win.clear()
+        game()
 game()
 curses.endwin()
